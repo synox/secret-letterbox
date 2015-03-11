@@ -10,7 +10,7 @@ Created for PHP 5.3+, using [Slim](http://www.slimframework.com/) and [OpenPGP J
 To install, you should read through the script, understand them and change the PGP in `key.js`. 
 
 ## Disclaimer
-You should update to the latest version of  [OpenPGP JS][1]. I can not validate the security of [OpenPGP JS][1], so I can not recommend it for production use. 
+You should update to the latest version of  [OpenPGP JS][1]. I can not validate the security of [OpenPGP JS][1], therefore I can not recommend it for production use. 
 
 There is no spam protection nor any valiation. 
 
