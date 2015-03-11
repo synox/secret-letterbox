@@ -18,7 +18,7 @@ $app->post('/save', function () use ($app) {
     return;
   }
   $date = date('Y-m-d_His'); // for production better use a GUID. 
-  file_put_contents("./data/$date.txt.asc", $data);
+  file_put_contents("./data/$date.txt.gpg", $data);
   $app->redirect('./saved');
 });
 
