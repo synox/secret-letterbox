@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="writeApp" manifest="./app.appcache">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Write</title>
+    
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/angular-flash.css" rel="stylesheet">
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/openpgp.min.js"></script>
+    <script src="js/stash.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-flash.js"></script>
+    
+    <link href="css/app.css" rel="stylesheet">
+    <script src="js/public_key.js"></script>
+    <script src="js/controller.js"></script>
+  </head>
+<body ng-controller="saveMessageCtrl">
+   
+<div class="container">
+      <noscript>
+         <h3> For functionality of this site it is necessary to enable JavaScript.
+         Here are the <a href="http://www.enable-javascript.com/" target="_blank">
+         instructions how to enable JavaScript in your web browser</a>. </h3><hr/>
+      </noscript>
+      
+
+  <div class="form-group">
+          <label>Message</label>
+          <textarea ng-model="draft" id="plain-message"  class="form-control"  required rows="5"></textarea>
+          <button  ng-click="saveMessage()"    id="encrypt-button" class="btn btn-success" type="button" >Save</button>
+          <br/><div class="spinner" ng-show="loading"><img src="img/spinner.gif"/>saving...</div>
+  </div> 
+  
+  <div flash-message="5000" ></div> 
+    
+  <div ng-show="messages.length" class="unsent-messages bg-warning">
+      <p><strong>{{messages.length}} messages have not been synced.</strong></p>
+
+    <ul>
+        <li ng-repeat="msg in messages track by $index"> 
+          {{msg.timestamp}}: <input value="{{msg.encrypted}}" class="pgp-message">
+        </li>
+    </ul>
+      
+    <button  ng-click="sync()"    id="encrypt-button" class="btn btn-primary" type="button" >Sync</button>
+    <div ng-show="http_errors" class="http-errors bg-danger">
+       {{http_errors}} 
+    </div>
+  </div>
+    
+</div>
+</body>
+</html>
