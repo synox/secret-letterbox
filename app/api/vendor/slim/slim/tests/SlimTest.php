@@ -6,7 +6,7 @@
  * @copyright   2011 Josh Lockhart
  * @link        http://www.slimframework.com
  * @license     http://www.slimframework.com/license
- * @version     2.4.2
+ * @version     2.6.1
  *
  * MIT LICENSE
  *
@@ -222,7 +222,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
                 ),
             )
         );
-        
+
         // Test recursive batch behaviour
         $s->config($override, true);
 
@@ -1237,7 +1237,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
      *
      * This asserts that the same middleware can NOT be queued twice (usually by accident).
      * Circular middleware stack causes a troublesome to debug PHP Fatal error:
-     * 
+     *
      * > Fatal error: Maximum function nesting level of '100' reached. aborting!
      */
     public function testFailureWhenAddingCircularMiddleware()
@@ -1286,6 +1286,16 @@ class SlimTest extends PHPUnit_Framework_TestCase
         });
         $s->run();
         $this->assertEquals('Foo', $_SESSION['slim.flash']['info']);
+    }
+
+    public function testFlashData()
+    {
+        $s = new \Slim\Slim();
+        $s->get('/bar', function () use ($s) {
+            $s->flashNow('info', 'bar');
+        });
+        $s->run();
+        $this->assertEquals(array('info' => 'bar'), $s->flashData());
     }
 
     /************************************************
@@ -1600,6 +1610,32 @@ class SlimTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(count($hookOne[10]) === 1);
         $app->clearHooks();
         $this->assertEquals(array(array()), $app->getHooks('test.hook.one'));
+    }
+
+    /**
+     * Test hooks accept multiple arguments
+     *
+     * Pre-conditions:
+     * Slim app instantiated;
+     * Hook name does not exist;
+     * Listener is a callable object;
+     *
+     * Post-conditions:
+     * Callable invoked with 2 arguments
+     */
+    public function testHooksMultipleArguments()
+    {
+        $testArgA = 'argumentA';
+        $testArgB = 'argumentB';
+
+        $this->expectOutputString($testArgA . $testArgB);
+
+	$app = new \Slim\Slim();
+
+        $app->hook('test.hook.one', function ($argA, $argB) {
+                echo $argA . $argB;
+        });
+        $app->applyHook('test.hook.one', $testArgA, $testArgB);
     }
 
     /**

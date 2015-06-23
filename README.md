@@ -1,7 +1,7 @@
 encrypted secret letterbox
 =================
 
-Simple *proove of concept* box for secret messages. The message is encrypted on the client using the pgp public key, submitted and saved on the server. The plaintext message is never sent over the network. Only the owner of the pgp private key can read the messages. 
+Simple *proove of concept* box for secret messages. The message is encrypted on the client using the pgp public key, submitted and saved on the server. The plaintext message is never sent over the network. Only the owner of the pgp private key can read the messages. The Web-Application can be used offline and the messages can be synced later.
 
 ![example](doc/example.png)
 

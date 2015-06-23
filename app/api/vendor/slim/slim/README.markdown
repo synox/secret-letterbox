@@ -1,6 +1,6 @@
 # Slim Framework
 
-[![Build Status](https://secure.travis-ci.org/codeguy/Slim.png?branch=master)](http://travis-ci.org/codeguy/Slim)
+[![Build Status](https://travis-ci.org/slimphp/Slim.svg?branch=master)](https://travis-ci.org/slimphp/Slim)
 
 Slim is a PHP micro framework that helps you quickly write simple yet powerful web applications and APIs.
 Slim is easy to use for both beginners and professionals. Slim favors cleanliness over terseness and common cases
@@ -17,7 +17,7 @@ Thank you for choosing the Slim Framework for your next project. I think you're 
 * Resource Locator and DI container
 * Template rendering with custom views
 * Flash messages
-* Secure cookies with AES-256 encryption
+* Encrypt cookie data
 * HTTP caching
 * Logging with custom log writers
 * Error handling and debugging
