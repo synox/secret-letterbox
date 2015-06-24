@@ -3,7 +3,8 @@ date_default_timezone_set('Europe/Paris');
 require 'vendor/autoload.php';
 
 $app = new \Slim\Slim();
- 
+$app->response->headers->set('X-Content-Type-Options', 'nosniff');
+
 $app->get('/', function () use ($app) {
 });
 
@@ -21,6 +22,8 @@ $app->post('/save', function () use ($app) {
     file_put_contents("../../data/$date.txt.gpg", $message['encrypted']);
     $message_timestamps[] = $message['timestamp'];
   }
+  $app->response->headers->set('Content-Type', 'application/json;charset=utf-8');
+  
   print json_encode($message_timestamps);
 });
 
