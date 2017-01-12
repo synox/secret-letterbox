@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" manifest="./app.appcache">
+<html lang="en" manifest="no-./app.appcache">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,8 +22,9 @@
             width: 10em;
         }
 
-
-
+        #unsent-message-list td input {
+            width: 80%;
+        }
 
 
     </style>
@@ -45,16 +46,22 @@
 
 <div id="flash-message" class="msg">saving...</div>
 
+
 <div id="backlog" class="unsent-messages bg-warning">
-    <p><strong><span id="unsent-messages-count">X</span> messages have not been synced.</strong></p>
+    <h2><span id="unsent-messages-count">X</span> messages not synced
+        <button id="sync-button" class="btn btn-a btn-sm" type="button">Sync</button>
+    </h2>
 
-    <ul id="unsent-message-list">
-    </ul>
-
-    <button id="sync-button" class="btn btn-a" type="button">Sync</button>
-    <div id="http_errors" class="msg http-errors bg-danger">
-        {{http_errors}}
-    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Timestamp</th>
+            <th>Ciphertext</th>
+        </tr>
+        </thead>
+        <tbody id="unsent-message-list">
+        </tbody>
+    </table>
 </div>
 
 <script src="client-libs/openpgp.min.js"></script>

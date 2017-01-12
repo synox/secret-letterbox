@@ -6,7 +6,7 @@
                 messages: {}
             };
         console.log("asdf", localStorage.getItem('encryption-state'));
-        document.getElementById("flash-message").style.visibility = 'hidden';
+        document.getElementById("flash-message").style.display = 'none';
         updateUi();
     };
 
@@ -21,7 +21,7 @@
             document.getElementById("unsent-messages-count").innerText = Object.keys(state.messages).length;
             var list = "";
             for (var timestamp in state.messages) {
-                list += "<li>" + timestamp + ": <input value='" + state.messages[timestamp] + "' class='pgp-message'></li>";
+                list += "<tr><td>" + timestamp + "</td><td><input value='" + state.messages[timestamp] + "' class='pgp-message'></td></tr>";
             }
             document.getElementById("unsent-message-list").innerHTML = list;
         } else {
@@ -29,12 +29,12 @@
         }
         if (flashMessage) {
             document.getElementById("flash-message").innerHTML = flashMessage;
-            document.getElementById("flash-message").style.visibility = '';
+            document.getElementById("flash-message").style.display = '';
             window.setTimeout(function () {
-                document.getElementById("flash-message").style.visibility = 'hidden';
+                document.getElementById("flash-message").style.display = 'none';
             }, 5000);
         } else {
-            document.getElementById("flash-message").style.visibility = 'hidden';
+            document.getElementById("flash-message").style.display = 'none';
         }
     };
 

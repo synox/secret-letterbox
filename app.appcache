@@ -1,6 +1,6 @@
 CACHE MANIFEST
-#CACHE:
-NETWORK:
+CACHE:
+index.js
 client-libs/mincss.css
 client-libs/openpgp.min.js
 client-libs/public_key.js
