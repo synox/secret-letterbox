@@ -13,20 +13,17 @@
 
     <link rel="stylesheet" href="client-libs/mincss.css">
     <style>
-        .unsent-messages {
-            padding: 15px;
+        #plain-message {
+            width: 95%;
         }
-
-        .unsent-messages input.pgp-message {
-            color: grey;
-            width: 10em;
-        }
-
         #unsent-message-list td input {
             width: 80%;
+            color: grey;
         }
 
-
+        body {
+            padding: 10px;
+        }
     </style>
 </head>
 <body>
@@ -39,7 +36,7 @@
 </noscript>
 
 <div>
-    <label for="plain-message">Message</label><br>
+    <strong><label for="plain-message">Message</label></strong><br>
     <textarea id="plain-message" class="form-control" required rows="5"></textarea><br>
     <button id="save-button" class="btn btn-b" type="button">Save</button>
 </div>
