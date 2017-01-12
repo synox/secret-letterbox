@@ -7,18 +7,16 @@ header('X-Content-Type-Options: nosniff');
 
 $inputJSON = file_get_contents('php://input');
 if (!$inputJSON) {
-    echo '{error: "no data"}';
     http_response_code(400);
-    die();
+    die('{error: "no data"}');
 }
-
 $messages = json_decode($inputJSON, TRUE);
-$message_timestamps = array();
 
-foreach ($messages as $message) {
-    $date = date('Y-m-d_His', $message['timestamp'] / 1000); // for production better use a GUID.
-    file_put_contents("./data/$date.txt.gpg", $message['encrypted']);
-    $message_timestamps[] = $message['timestamp'];
+$message_timestamps = array();
+foreach ($messages as $timestamp => $ciphertext) {
+    $date = date('Y-m-d_His', $timestamp / 1000); // for production better use a GUID.
+    file_put_contents("./data/$date.txt.gpg", $ciphertext);
+    $message_timestamps[] = $timestamp;
 }
 
 echo json_encode($message_timestamps);

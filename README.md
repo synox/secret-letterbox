@@ -15,3 +15,8 @@ You should update to the latest version of  [OpenPGP JS][1]. I can not validate 
 There is no spam protection nor any valiation. 
 
 [1]: https://github.com/openpgpjs/openpgpjs
+
+## Key creation
+
+gpg --gen-key
+gpg --armor --export  "demokey" > public_key.txt
