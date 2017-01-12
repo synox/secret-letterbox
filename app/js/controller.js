@@ -14,7 +14,7 @@ writeApp.controller('saveMessageCtrl', function ($scope, $http, Flash) {
   $scope.sync = function() {
     $scope.loading = true;
     $scope.http_errors = '';
-    $http.post('./api/index.php/save', $scope.messages).
+      $http.post('../backend.php', $scope.messages).
       success(function(saved_timestamps, status, headers, config) {
         // to use splice the array must be iterated in reverse order.
         for(var i = $scope.messages.length -1; i >= 0 ; i--){
@@ -34,18 +34,18 @@ writeApp.controller('saveMessageCtrl', function ($scope, $http, Flash) {
         }
         postSync();
       });
-  }
+  };;;;
   
   postSync = function() {
     $scope.loading = false;
     stash.set('unsent', $scope.messages);
-  }
+  };;;;
   
   $scope.addMessage = function(encrypted) {
     $scope.messages.push(  { 'timestamp': new Date().getTime(),
                                'encrypted': encrypted} );
     stash.set('unsent', $scope.messages);
-  }
+  };;;;
   
   $scope.saveMessage = function() {
         window.openpgp.encryptMessage(publicKey.keys, $scope.draft).then(function(pgpMessage) {

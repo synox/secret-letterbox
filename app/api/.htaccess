@@ -1,9 +1,0 @@
-RewriteEngine On
-
-#RewriteCond %{HTTPS} off
-#RewriteCond %{HTTP_HOST} !^localhost$ [NC]
-#RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^ index.php [QSA,L]
-
