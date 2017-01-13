@@ -1,7 +1,7 @@
 encrypted secret letterbox
 =================
 
-Client-Encrypted, Offline-First, Web diary or secret letterbox. 
+**Client-Encrypted, Offline-First, Web diary or secret letterbox.** 
 
        Browser (JS)
     +---------------+
@@ -15,8 +15,10 @@ Client-Encrypted, Offline-First, Web diary or secret letterbox.
     +---------------+                    | (../data)          |
                                          +--------------------+
 
-Goal: 
-**Asymmetric encryption with minimal codebase** 
+**Goal: 
+Asymmetric encryption with minimal codebase** 
+
+Licence: MIT
 
 Features: 
  - PGP encryption in the Browser using [OpenPGP JS][1]
