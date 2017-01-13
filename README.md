@@ -20,3 +20,10 @@ There is no spam protection nor any valiation.
 
 gpg --gen-key
 gpg --armor --export  "demokey" > public_key.txt
+
+## Development
+Clone repo and run php webserver:
+
+    php -S localhost:8000
+
+
