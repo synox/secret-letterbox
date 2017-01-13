@@ -1,37 +1,57 @@
 encrypted secret letterbox
 =================
 
-Simple *proove of concept* box for secret messages. The message is encrypted on the client using the pgp public key, submitted and saved on the server. The plaintext message is never sent over the network. Only the owner of the pgp private key can read the messages. The Web-Application can be used offline and the messages can be synced later.
+Client-Encrypted, Offline-First, Web diary or secret letterbox. 
 
-![example](doc/example.png)
+       Browser (JS)
+    +---------------+
+    |  Plaintext    |
+    |     +         |
+    |     |         |
+    | encrypt&save  |
+    |     |         |                      Backend (PHP)
+    |     v         |        Sync        +--------------------+
+    | localStorage  | -----------------> | Save to directory  |
+    +---------------+                    | (../data)          |
+                                         +--------------------+
 
-Created for PHP 5.3+, using [Slim](http://www.slimframework.com/), [AngularJS](https://angularjs.org/) and [OpenPGP JS][1]. The system is as simple as possible. There is also a rsync-script to download and delete the encrypted messages from the server. 
+Goal: 
+**Asymmetric encryption with minimal codebase** 
 
-To install, you should read through the script, understand them and change the PGP in `public_key.js`. 
+Features: 
+ - PGP encryption in the Browser using [OpenPGP JS][1]
+ - Offline WebApp with offline storage. 
+ - Automatic synchronization with the backend. 
+ - PHP-Backend has no dependencies and saves each message in a file. 
+ - can be combined with https://github.com/synox/diary
 
 ## Disclaimer
 You should update to the latest version of  [OpenPGP JS][1]. I can not validate the security of [OpenPGP JS][1], therefore I can not recommend it for production use. 
 
 There is no spam protection nor any valiation. 
 
-[1]: https://github.com/openpgpjs/openpgpjs
 
 ## Installation
 
-Create new key:
-
-    gpg --gen-key
-    
-Export public key, then paste it into `public_key.js`
- 
-    gpg --armor --export  "demokey" 
-
-Move the `data` directory outside the public_http directory and update the path in backend.php. 
+ - read & understand the source code 
+ - in `backend.php` change the $data_directory to something outside the `public_http` directory. 
+ - learn to use gpg, then create new key: `gpg --gen-key`  
+ - Export public key `gpg --armor --export  "my-key-name"`
+ - Insert public key into `public_key.js` (some SublimeText magic might help)
 
 
-## Development
-Clone repo and run php webserver:
+## Useful scripts
+
+Use the follwing script to download and delete the encrypted messages from the server.
+
+    rsync --quiet --archive --update --times --whole-file --no-motd \
+      --exclude=".keep" --include "*.gpg"  --remove-source-files \
+      myserver.com:letterbox/data/ /home/steve/secrets/   \
+      > /var/log/secret-letterbox-sync.log 2>&1
+
+For development you can use the built-in php server: 
 
     php -S localhost:8000
 
 
+[1]: https://github.com/openpgpjs/openpgpjs
