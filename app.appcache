@@ -1,9 +1,9 @@
 CACHE MANIFEST
 CACHE:
 index.js
+public_key.js
 client-libs/mincss.css
 client-libs/openpgp.min.js
-client-libs/public_key.js
 NETWORK:
 backend.php
 *

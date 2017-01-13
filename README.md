@@ -16,10 +16,18 @@ There is no spam protection nor any valiation.
 
 [1]: https://github.com/openpgpjs/openpgpjs
 
-## Key creation
+## Installation
 
-gpg --gen-key
-gpg --armor --export  "demokey" > public_key.txt
+Create new key:
+
+    gpg --gen-key
+    
+Export public key, then paste it into `public_key.js`
+ 
+    gpg --armor --export  "demokey" 
+
+Move the `data` directory outside the public_http directory and update the path in backend.php. 
+
 
 ## Development
 Clone repo and run php webserver:
