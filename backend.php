@@ -1,6 +1,6 @@
 <?php
 date_default_timezone_set('Europe/Paris');
-$data_directory = "./data";
+$data_directory = "../../data";
 
 header('Content-type: application/json;charset=utf-8');
 header('X-Content-Type-Options: nosniff'); // Forces IE to use json
